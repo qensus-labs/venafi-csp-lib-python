@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "venafi-csp"
+dynamic = ["version"]
+description = "Python Package that provides abstracted library access for various code signing clients to Venafi CodeSign Protect resources"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+requires-python = ">=3.8"
+authors = [
+    { name = "Qensus", email = "venafi.oss@qensus.com" },
+]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "envparse>=0.2.0,<0.3",
+]
+
+[project.scripts]
+venafi-container-init = "venafi_csp.container_init_command:main"
+venafi-sign-jarsigner = "venafi_csp.jarsigner_sign_command:main"
+venafi-sign-signtool = "venafi_csp.signtool_sign_command:main"
+venafi-verify-jarsigner = "venafi_csp.jarsigner_verify_command:main"
+venafi-verify-signtool = "venafi_csp.signtool_verify_command:main"
+venafi-version = "venafi_csp.version_command:main"
+
+[project.urls]
+Homepage = "https://github.com/qensus-labs/venafi-csp-lib-python"
+
+[tool.setuptools.dynamic]
+version = { attr = "venafi_csp.__version__" }
+
+[tool.setuptools.package-data]
+"venafi_csp.support" = ["*.txt"]
+"venafi_csp.support.java" = ["*.class"]

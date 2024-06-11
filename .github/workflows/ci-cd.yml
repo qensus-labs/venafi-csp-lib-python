@@ -12,8 +12,35 @@ on:
         required: true
 
 jobs:
+  tests:
+    name: Test package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v3
+        with:
+          path: venv
+          key: test-venv-${{ hashFiles('requirements-dev.txt') }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install pypa/build
+        run: >-
+          python3 -m
+          pip install
+          -r
+          requirements-dev.txt
+      - name: Flake8 tests
+        run: flake8 src/venafi_csp tests
+      - name: Unit tests
+        run: PYTHONPATH=src/. pytest --color=yes
+
   build:
-    name: Build distribution 📦
+    name: Build packages
+    needs:
+    - tests
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +65,7 @@ jobs:
 
   publish-to-pypi:
     name: >-
-      Publish Python 🐍 distribution 📦 to PyPI
+      Publish package to PyPI
     if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
     needs:
     - build
