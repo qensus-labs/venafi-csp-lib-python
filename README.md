@@ -1,6 +1,3 @@
-# venafi-csp-lib-python
-Python Package that provides abstracted library access for various code signing clients to Venafi CodeSign Protect 
-
 # Venafi CodeSign Protect: Python (PyPi) Package
 
 This product integrates [Venafi CodeSign Protect](https://www.venafi.com/platform/code-signing) with Python as a package to provide abstracted library access for various code signing clients.
