@@ -191,7 +191,8 @@ class JarsignerVerifyCommand:
                     '-storetype', 'PKCS11',
                     '-storepass', 'none',
                     input_path,
-                ]
+                ],
+                env=self.session_env
             )
 
             if 'jar is unsigned' not in output:
