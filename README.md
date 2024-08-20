@@ -268,7 +268,7 @@ Optional:
     EXTRA_ARGS: /arg1,/arg2
     ~~~
 
- * `EXTRA_TRUSTED_TLS_CA_CERTS` (only applicable when using Docker): Allows registering extra TLS CA certificates into the truststore. This is useful if your TPP's TLS certificate is not recognized by the TLS trust store in our Docker image.
+ * `EXTRA_TRUSTED_TLS_CA_CERTS` (only recommended for private executors or self-hosted runners): Allows registering extra TLS CA certificates into the truststore. This is useful if your TPP's TLS certificate is not recognized by the TLS trust store in our Docker image.
 
    Set the value to the path of a PEM or DER file that contains one or more certificates to add to the trust store.
 
@@ -323,7 +323,7 @@ Required:
 
 Optional:
 
- * `EXTRA_TRUSTED_TLS_CA_CERTS` (only applicable when using Docker): Allows registering extra TLS CA certificates into the truststore. This is useful if your TPP's TLS certificate is not recognized by the TLS trust store in our Docker image.
+ * `EXTRA_TRUSTED_TLS_CA_CERTS` (only recommended for private executors or self-hosted runners): Allows registering extra TLS CA certificates into the truststore. This is useful if your TPP's TLS certificate is not recognized by the TLS trust store in our Docker image.
 
    Set the value to the path of a PEM or DER file that contains one or more certificates to add to the trust store.
 
@@ -335,7 +335,7 @@ Optional:
    venafi_csp.venafi-verify-signtool
    ~~~
 
- * `TRUSTED_CHAIN_LABEL` (only applicable when using Docker): Allows registering a chain in the TPP, into the truststore. This is useful if you want to verify files, that are signed with a chain that's not already in the container's default truststore.
+ * `TRUSTED_CHAIN_LABEL` (only recommended for private executors or self-hosted runners) Allows registering a chain in the TPP, into the truststore. This is useful if you want to verify files, that are signed with a chain that's not already in the container's default truststore.
 
    Set the value to the label of the certificate (inside the TPP) for which its chain you want to trust. You can obtain a list of labels with `cspconfig listcertificates`.
 

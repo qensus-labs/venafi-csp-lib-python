@@ -182,10 +182,16 @@ def invoke_command(logger, pre_message, success_message, error_message, short_cm
 def add_ca_cert_to_truststore(logger, path):
     logger.info(f'Adding {path} to the system truststore')
     if os.name == 'nt':
-        subprocess.run(
-            ['certoc', '-addstore', 'root', path],
-            check=True
-        )
+        if os.path.exists('C:\\windows\\System32\\certoc.exe'):
+            subprocess.run(
+                ['certoc', '-addstore', 'root', path],
+                check=True
+            )
+        else:
+            subprocess.run(
+                ['certutil', '-addstore', 'root', path],
+                check=True
+            )
     else:
         subprocess.run(['cp', path, '/etc/pki/ca-trust/source/anchors/'], check=True)
         subprocess.run(['update-ca-trust', 'extract'], check=True)
